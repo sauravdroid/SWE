@@ -140,7 +140,7 @@ def check_superuser(req):
 def send_mail_to_user(username, password, email):
     send_mail(
         'Activating your account',
-        'Please to go to this link to activate your account -> http://localhost:8000/user/activate_account/ username: ' + username + " ,password: " + password,
+        'Please to go to this link to activate your account -> https://codeswe.herokuapp.com/user/activate_account/ username: ' + username + " ,password: " + password,
         'saru.sreyo@gmail.com',
         [email],
         fail_silently=False,
