@@ -111,7 +111,7 @@ def register_teacher(request):
                 password = form.cleaned_data['password']
                 user.set_password(password)
                 user.save()
-                send_mail_to_user(form.cleaned_data['username'], password, host_email.email)
+                send_mail_to_user(form.cleaned_data['username'], password, user.email)
                 return HttpResponse("Successfully Registered " + form.cleaned_data['email'])
     else:
         return HttpResponse("You have to login as the controller.You don't have sufficient permission")
