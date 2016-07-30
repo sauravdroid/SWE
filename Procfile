@@ -1,1 +1,1 @@
-web: gunicorn CodeSWE.wsgi
+web: gunicorn CodeSWE.wsgi --log-file -
