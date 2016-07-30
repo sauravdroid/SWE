@@ -1,0 +1,32 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block materializecss %}
+
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/send-appointment.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/creat-actions.css' %}">
+{% endblock %}
+{% block body %}
+    <div id="form-card">
+        <div id="bar">
+            <h5>{{ title }}</h5>
+        </div>
+        <div id="internal-form-card">
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="div-container">
+                        <label>{{ field.label_tag }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" id="btn"
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">
+                    {{ button_text }}
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

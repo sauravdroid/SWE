@@ -1,0 +1,77 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block materializecss %}
+
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/send-appointment.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/login_style.css' %}">
+{% endblock %}
+{% block body %}
+    <div id="form-card">
+        <div id="bar">
+            <h5>Appointment</h5>
+        </div>
+        <div id="internal-form-card">
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if forloop.counter == 1 %}
+                    <div>
+                        <label for="id_user" class="select-box-label">Select User</label>
+                        <div class="col s12 select-box">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% elif  forloop.counter == 2 %}
+                    <div id="appointment-termination-div" style="margin-top: 40px;">
+                        <label for="id_appoimtment_termination_date" class="select-box-label">Appointment Termination
+                            Date</label>
+                        {{ field }}
+                    </div>
+                {% elif forloop.counter == 3 %}
+                    <div style="margin-top: 40px;">
+                        <label for="id_appointment_file" style="margin-right: 30px;">Choose Appointment Letter</label>
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% if role == "paper_setter" %}
+                <div style="margin-top: 40px;">
+                    <label for="subjects" class="select-box-label">Select Subject : </label>
+
+                        <select name="subject" id="subjects">
+                            <option value="" disabled selected>Choose your option</option>
+                            {% for subject in subjects %}
+                                <option value="{{ subject.code }}">{{ subject.name_new }}({{ subject.course.department.dept_name }})</option>
+                            {% endfor %}
+                        </select>
+
+                </div>
+            {% elif role == "moderator" %}
+                <div style="margin-top: 40px;">
+                    <label for="courses">Course</label>
+                    <div class="col s12 select-box">
+                        <select name="course" id="courses">
+                            <option value="" disabled selected>Select Course</option>
+                            {% for course in courses %}
+                                <option value="{{ course.name }}">{{ course.name_new }}
+                                    &nbsp;({{ course.department.dept_name }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            {% endif %}
+            <button type="submit" id="btn"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect">Send
+                Appointment
+            </button>
+        </form>
+        </div>
+    </div>
+    {% if error_message %}
+        <h3 style="color: red">*{{ error_message }}</h3>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+    <ul>
+        {% for course in courses %}
+            <li><a href="{% url 'user:upload_schedule_course' course.name %}">{{ course.name_new }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

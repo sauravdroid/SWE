@@ -1,0 +1,70 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">Profile</a>
+        <a class="mdl-navigation__link" href="{% url 'user:logout' %}">Logout</a>
+    </nav>
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/post_box.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/login_style.css' %}">
+{% endblock %}
+{% block body %}
+    {% if message %}
+        <script type="text/javascript">
+            alert("Approval Successful");
+        </script>
+    {% endif %}
+    {% if question_papers|length < 1%}
+        <h3 class="question-paper-message">No Question Paper to Approve</h3>
+    {% endif %}
+    {% for question_paper in question_papers %}
+        <div class="post-container">
+            <a class="post-title" href="{{ question_paper.paper.url }}">{{ question_paper.subject.name_new }}</a>
+            <hr>
+            <div class="question-paper-detail-container">
+                <ul>
+                    <li class="li-label"><span class="label">Paper Setter</span><span
+                            class="detail">{{ question_paper.paper_setter.setter.user.get_full_name }}</span>
+                    </li>
+                    <li class="li-label"><span class="label">Subject Course</span><span
+                            class="detail detail-left">{{ question_paper.course.name_new }}</span>
+                    </li>
+                </ul>
+                <hr class="short-bar">
+                <form action="" method="post">
+                    <input type="hidden" name="question_paper_id" value="{{ question_paper.pk }}">
+                    <ul class="input-list">
+                        <li>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input type="number" name="full_marks" id="full_marks" class="mdl-textfield__input">
+                                <label class="mdl-textfield__label" for="full_marks">Full Marks</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input type="number" name="duration" id="duration" class="mdl-textfield__input">
+                                <label class="mdl-textfield__label" for="duration">Duration</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input type="number" name="year" id="year" class="mdl-textfield__input">
+                                <label class="mdl-textfield__label" for="year">Year of Examination</label>
+                            </div>
+                        </li>
+                    </ul>
+                    {% csrf_token %}
+                    <a href="{{ question_paper.paper.url }}" id="btn-download" target="_blank"
+                   class="mdl-button mdl-js-button">Download</a>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect"
+                            type="submit" id="btn">Approve
+                    </button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    <div style="height: 100px;"></div>
+{% endblock %}

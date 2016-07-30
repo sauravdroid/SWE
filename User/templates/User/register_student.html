@@ -1,0 +1,60 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/student-register.css' %}">
+{% endblock %}
+
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">Login</a>
+        <a class="mdl-navigation__link" href="{% url 'user:register_student' %}">Student Registration</a>
+    </nav>
+{% endblock %}
+{% block body %}
+    <div class="post">
+        <div class="bar">
+            <h3 class="login-title">Register Student</h3>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <ul>
+                {% for field in custom_user_form %}
+                    <li>
+                        {% if forloop.counter < 6 %}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                {{ field }}
+                                <label class="mdl-textfield__label" for="{{ field.name }}">{{ field.label }}</label>
+                            </div>
+                        {% else %}
+                            <label class="label" style="color: #78909C">{{ field.label }}</label>
+                            {{ field }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <ul>
+                {% for field in student_detail_form %}
+                    <li>
+                        {% if forloop.counter != 2 %}
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                {{ field }}
+                                <label class="mdl-textfield__label" for="{{ field.name }}">{{ field.label }}</label>
+                            </div>
+                        {% else %}
+                            <div style="margin: 20px 0;">
+                                <label class="label" style="color: #78909C">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect"
+                    mdl- type="submit" id="btn">Proceed to Payment
+            </button>
+        </form>
+    </div>
+    <div style="height: 100px;"></div>
+{% endblock %}

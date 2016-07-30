@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'User/css/controller-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/profile_style.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/material_icons.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/material-pink.css' %}">
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">-->
+    <link rel="stylesheet" href="{% static 'User/css/material-icons.css' %}">
+    {% block materializecss %}{% endblock %}
+    {% block styles %}{% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+</body>

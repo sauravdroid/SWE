@@ -1,0 +1,275 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">Profile</a>
+        <a class="mdl-navigation__link" href="{% url 'user:logout' %}">Logout</a>
+    </nav>
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/department-detail-view.css' %}">
+    <style>
+        h4 {
+            position: relative;
+            left: 40px;
+        }
+
+        ul {
+
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <h4 class="model"> {{ model }}s</h4>
+    <ul>
+        {% for field in departments %}
+            {% if model == 'Department' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.dept_name }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Location</h4>
+                            <h5>{{ field.get_location_display }}</h5>
+                        </div>
+                        <div>
+                            <h4>Group</h4>
+                            <h5>{{ field.get_group_display }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'Course' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.name_new }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.department.dept_name }}</h5>
+                        </div>
+                        <div>
+                            <h4>Award</h4>
+                            <h5>{{ field.get_course_display }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'Subject' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.name_new }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Code</h4>
+                            <h5>{{ field.code }}</h5>
+                        </div>
+                        <div>
+                            <h4>Course</h4>
+                            <h5>{{ field.course.name_new }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.course.department.dept_name }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Semester</h4>
+                            <h5>{{ field.semester }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'Challan' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.course.name_new }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Semester</h4>
+                            <h5>{{ field.semester }}</h5>
+                        </div>
+                        <div>
+                            <h4>Application Form Cose</h4>
+                            <h5>{{ field.application_form_cost }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Theroy Paper Fees</h4>
+                            <h5>{{ field.examination_fess_th }}</h5>
+                        </div>
+                        <div>
+                            <h4>Practical Paper Fees</h4>
+                            <h5>{{ field.examination_fess_pr }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Centre Fees</h4>
+                            <h5>{{ field.centre_fees }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'Student' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.student.get_full_name }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Roll</h4>
+                            <h5>{{ field.roll }}</h5>
+                        </div>
+                        <div>
+                            <h4>Registration Id</h4>
+                            <h5>{{ field.registration_id.upper }}</h5>
+                        </div>
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.course_taken.department.dept_name }}</h5>
+                        </div>
+                        <div>
+                            <h4>Course Taken</h4>
+                            <h5>{{ field.course_taken.name_new }}</h5>
+                        </div>
+                        <div>
+                            <h4>Semester</h4>
+                            <h5>{{ field.semester }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'QuestionPaper' %}
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.course.name_new }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Course</h4>
+                            <h5>{{ field.course.name_new }}</h5>
+                        </div>
+                        <div>
+                            <h4>Subject</h4>
+                            <h5>{{ field.subject.name_new }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Full Marks</h4>
+                            <h5>{{ field.full_marks }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Duration</h4>
+                            <h5>{{ field.time }}&nbsp;hours</h5>
+                        </div>
+
+                        <div>
+                            <h4>Semester</h4>
+                            <h5>{{ field.subject.semester }}</h5>
+                        </div>
+                        <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--mini-fab mdl-button--colored"
+                           style="margin-top: 5px;" href="{{ field.paper.url }}" target="_blank">
+                            <i class="material-icons">file_download</i>
+                        </a>
+                        {% if not field.approved %}
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="subject_name" value="{{ field.subject_name }}">
+                                <button type="submit" class="mdl-button mdl-js-button qpaper-input">Approve</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            {% elif model == 'Teacher' %}
+
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.user.get_full_name }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Email</h4>
+                            <h5>{{ field.user.email }}</h5>
+                        </div>
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.department_fk.dept_name.upper }}</h5>
+                        </div>
+                        <div>
+                            <h4>Date of Join</h4>
+                            <h5>{{ field.year_of_join }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif model == 'Moderator' %}
+
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.user.user.get_full_name }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Email</h4>
+                            <h5>{{ field.user.user.email }}</h5>
+                        </div>
+                        <div>
+                            <h4>Course</h4>
+                            <h5>{{ field.course.name_new }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.course.department.dept_name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'PaperSetter' %}
+
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.setter.user.get_full_name }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Email</h4>
+                            <h5>{{ field.setter.user.email }}</h5>
+                        </div>
+                        <div>
+                            <h4>Subject</h4>
+                            <h5>{{ field.subject.course.name_new }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.subject.course.department.dept_name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% elif model == 'TimeTable' %}
+
+                <div id="card">
+                    <div id="bar">
+                        <h5>{{ field.course.name_new }}</h5>
+                    </div>
+                    <div id="container">
+                        <div>
+                            <h4>Upload Date</h4>
+                            <h5>{{ field.date_uploaded }}</h5>
+                        </div>
+
+                        <div>
+                            <h4>Department</h4>
+                            <h5>{{ field.course.department.dept_name }}</h5>
+                        </div>
+
+                        <a href="{{ field.timetable_file.url }}"
+                           class="mdl-button mdl-js-button qpaper-input">Download</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <div style="height: 100px;"></div>
+{% endblock %}

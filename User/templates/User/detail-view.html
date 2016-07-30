@@ -1,0 +1,58 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <style>
+        #card {
+            position: relative;
+            margin-top: 5%;
+            left: 30%;
+            width: 400px;
+            display: inline-block;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #bar {
+            width: 100%;
+            position: absolute;
+            height: 50px;
+            background-color: #3F51B5;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
+
+        #bar h5 {
+            position: relative;
+            margin-left: 20px;
+            font-size: 20px;
+            margin-top: 15px;
+            color: #fff;
+        }
+
+        #container {
+            padding: 20px;
+        }
+
+        #container h4 {
+            position: relative;
+            top: 20px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div id="card">
+        <div id="bar">
+            <h5>{{ department.dept_name }}</h5>
+        </div>
+        <div id="container">
+            <div>
+                <h4>Location</h4>
+                {{ department.get_location_display }}
+            </div>
+            <div>
+                <h4>Group</h4>
+                {{ department.get_group_display }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

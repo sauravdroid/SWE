@@ -1,0 +1,10 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+    <h1>{{ username }}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <button type="submit">Activate</button>
+    </form>
+{% endblock %}

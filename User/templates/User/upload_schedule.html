@@ -1,0 +1,10 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <button type="submit">Upload Time Table</button>
+    </form>
+    <h4>{{ course }}</h4>
+{% endblock %}

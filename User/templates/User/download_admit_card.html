@@ -1,0 +1,50 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/send-appointment.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/department-detail-view.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/admit-card.css' %}">
+{% endblock %}
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">Profile</a>
+        <a class="mdl-navigation__link" href="{% url 'user:logout' %}">Logout</a>
+    </nav>
+{% endblock %}
+{% block body %}
+    <div id="card">
+        <div id="bar">
+            <h5>Admit Card</h5>
+        </div>
+        <div id="container">
+            <div>
+                <h4>Name</h4>
+                <h5>{{ user.get_full_name }}</h5>
+            </div>
+            <div>
+                <h4>Registration ID</h4>
+                <h5>{{ detail.registration_id.upper }}</h5>
+            </div>
+
+            <div>
+                <h4>Roll No.</h4>
+                <h5>{{ detail.roll }}</h5>
+            </div>
+
+            <div>
+                <h4>Course</h4>
+                <h5>{{ detail.course_taken.name_new }}</h5>
+            </div>
+
+            <div>
+                <h4>Department</h4>
+                <h5>{{ detail.course_taken.department.dept_name }}</h5>
+            </div>
+            <div>
+                <h4>Semester</h4>
+                <h5>{{ detail.semester }}</h5>
+            </div>
+        </div>
+    </div>
+    <div style="height: 200px;"></div>
+{% endblock %}

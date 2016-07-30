@@ -1,0 +1,10 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+
+    <ul>
+        {% for course in courses %}
+            <li><a href="{% url 'user:create_challan' course.name %}"> {{ course.name_new }} </a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

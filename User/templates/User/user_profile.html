@@ -1,0 +1,33 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/user-profile.css' %}">
+
+{% endblock %}
+{% block body %}
+    <div class="user-main-header">
+        <span id="username">{{ username }}</span>
+        <a href="#" id="settings_link"><i class="material-icons" id="settings">settings</i></a>
+    </div>
+    <div class="user-sub-header">
+        <ul class="user-sub-header-links">
+            <li><span>{{ designation }}</span></li>
+            {% if status.lower == "pending" %}
+                <li><a href="{% url 'user:approve_appointment' role_raw %}">{{ role }}&nbsp;<span
+                        style="color: red;">({{ status }})</span></a></li>
+            {% else %}
+                <li><a href="#">{{ role }}</a></li>
+            {% endif %}
+            {% if role_raw == 'paper_setter' %}
+                <li><a href="{% url 'user:make_questionpaper' %}">Upload Question Paper</a></li>
+            {% elif role_raw == 'moderator' %}
+                <li><a href="{% url 'user:confirm_questionpaper' %}">Confirm Question Paper</a></li>
+            {% endif %}
+            {% if designation == 'HOD' %}
+                <li><a href="{% url 'user:upload_schedule' %}">Upload Schedule</a></li>
+            {% endif %}
+            <li><a href="{% url 'user:logout' %}">Logout</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="{% static 'User/javascript/profile-user.js' %}"></script>
+{% endblock %}

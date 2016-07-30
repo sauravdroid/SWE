@@ -1,0 +1,14 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">{{ user.get_full_name }}</a>
+        <a class="mdl-navigation__link" href="{% url 'user:download_admit_card' %}">Admit Card</a>
+        <a class="mdl-navigation__link" href="{% url 'user:download_challan' %}">Challan</a>
+        <a class="mdl-navigation__link" href="{% url 'user:logout' %}">Logout</a>
+    </nav>
+{% endblock %}
+{% block body %}
+
+
+{% endblock %}

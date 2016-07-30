@@ -1,0 +1,80 @@
+{% extends 'User/base-bar.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/send-appointment.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/department-detail-view.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/admit-card.css' %}">
+{% endblock %}
+{% block nav %}
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="{% url 'user:login' %}">Profile</a>
+        <a class="mdl-navigation__link" href="{% url 'user:logout' %}">Logout</a>
+    </nav>
+{% endblock %}
+{% block body %}
+    <!--<h1>Registration Id : {{ registration_id }}</h1>
+    <h1>Course : {{ challan.course.name_new }}</h1>
+    <h3>Semester : {{ challan.semester }}</h3>
+    <h3>Cost of Application Form : {{ challan.application_form_cost }}</h3>
+    <h3>Examination Fees Theory Paper : {{ challan.examination_fess_th }}</h3>
+    <h3>Examination Fees Practical Paper : {{ challan.examination_fess_pr }}</h3>
+    <h3>Centre Fees : {{ challan.centre_fees }}</h3>
+    <hr>
+    <h2>Total : {{ challan.get_total_form_cost }}</h2>-->
+    <div id="card">
+        <div id="bar">
+            <h5>Challan</h5>
+        </div>
+        <div id="container">
+            <div>
+                <h4>Registration Id</h4>
+                <h5>{{ registration_id }}</h5>
+            </div>
+            <div>
+                <h4>Course</h4>
+                <h5>{{ challan.course.name_new }}</h5>
+            </div>
+            <div>
+                <h4>Department</h4>
+                <h5>{{ challan.course.department.dept_name }}</h5>
+            </div>
+            <div>
+                <h4>Semester</h4>
+                <h5>{{ challan.semester }}</h5>
+            </div>
+
+            <div>
+                <h4>Application Form Cost</h4>
+                <h5>&#x20b9;&nbsp;{{ challan.application_form_cost }}</h5>
+            </div>
+
+            <div>
+                <h4>Examination Fees for Theory Paper</h4>
+                <h5>&#x20b9;&nbsp;{{ challan.examination_fess_th }}</h5>
+            </div>
+
+            <div>
+                <h4>Examination Fees for Theory Paper</h4>
+                <h5>&#x20b9;&nbsp;{{ challan.examination_fess_pr }}</h5>
+            </div>
+
+            <div>
+                <h4>Centre Fees</h4>
+                <h5>&#x20b9;&nbsp;{{ challan.centre_fees }}</h5>
+            </div>
+            <hr>
+            <div>
+                <h4>Total Fees</h4>
+                <h5>&#x20b9;&nbsp;{{ challan.get_total_form_cost }}</h5>
+            </div>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="registration_id" value="{{ registration_id }}">
+            <button class="mdl-button mdl-js-button mdl-button--primary" type="submit" id="btn_confirm">Confirm Payment</button>
+        </form>
+    </div>
+
+
+    <div style="height: 200px;"></div>
+{% endblock %}

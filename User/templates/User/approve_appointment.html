@@ -1,0 +1,19 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+    <h1>Approve Appointment</h1>
+    <h2>{{ appointment.date_sent }}</h2>
+    <a href="{{ appointment.appointment_file.url }}" target="_blank">Appointment Letter</a>
+    {% if role == 'paper_setter' %}
+        <h3>Course : {{ subject.course }}</h3>
+        <h5>Subject : {{ subject.name_new }}</h5>
+        <h5>Semester : {{ subject.semester }}</h5>
+    {% elif role == 'moderator' %}
+        <h3>Course : {{ course.name_new }}</h3>
+        <h4>Department : {{ course.department.dept_name }}</h4>
+    {% endif %}
+    <form method="post" action="">
+        {% csrf_token %}
+        <button type="submit">Approve</button>
+    </form>
+{% endblock %}

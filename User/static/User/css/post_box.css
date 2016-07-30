@@ -1,0 +1,93 @@
+body{
+    padding:0;
+}
+h1,h2{
+    margin: 0;
+}
+
+.post-container{
+    margin-top:50px;
+    margin-bottom: 20px;
+    left:25%;
+    position: relative;
+    border: 0.5px solid #f3f3f3;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.15);
+    width: 650px;
+    height: 375px;
+    display: block;
+    padding: 10px 0 0 0;
+
+}
+.post-title{
+    position: absolute;
+    color:#253447;
+    line-height: 20px;
+    margin-left: 25px;
+    margin-right: 20px;
+    font-size: 24px;
+    margin-top:10px;
+}
+.post-body{
+    position: absolute;
+    color: #f573af;
+    margin-left: 25px;
+    margin-right: 20px;
+    font-size: 16px;
+    line-height: 34px;
+}
+.question-paper-detail-container{
+    position: relative;
+    top:10px;
+}
+hr{
+    position: relative;
+    margin-top: 50px;
+}
+.short-bar{
+    margin: 0 40px 10px 40px;
+}
+.mdl-textfield{
+    width: 150px;
+}
+.input-list{
+    position: relative;
+    top:20px;
+    left: 30px;
+}
+.input-list li{
+    position: relative;
+    float: left;
+    margin-right: 25px;
+}
+#btn{
+    top : 45px;
+}
+.label{
+    padding: 10px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #253447;
+    font-size: 13px;
+}
+.detail{
+    margin-left: 10px;
+}
+
+.li-label{
+    margin-bottom: 30px;
+}
+.question-paper-message{
+    color:#253447;
+    position: relative;
+    left: 30%;
+    margin-top:200px;
+
+}
+#btn-download{
+    position: relative;
+    top : 45px;
+    left: 35px;
+    color:#253447;
+}

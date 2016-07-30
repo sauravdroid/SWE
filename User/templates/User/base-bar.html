@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'User/css/profile_style.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/controller-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/material_icons.css' %}">
+    <link rel="stylesheet" href="{% static 'User/css/material-pink.css' %}">
+    <script type="text/javascript" src="{% static 'User/javascript/material-min.js' %}"></script>
+    <script src="{% static 'User/javascript/jquery-3.1.0.min.js' %}"></script>
+    {% block materializecss %}{% endblock %}
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row" id="header_row">
+            <!-- Title -->
+            <span class="mdl-layout-title" id="logo">Calcutta University</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            {% block nav %} {% endblock %}
+
+        </div>
+    </header>
+
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            {% block body %}{% endblock %}
+        </div>
+
+    </main>
+</div>
+</body>
+</html>

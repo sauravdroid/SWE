@@ -1,0 +1,24 @@
+.form-text-field{
+    width: 200px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #3F51B5;
+    font-size: 16px;
+}
+label{
+    position: relative;
+    top:3px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.div-container{
+    margin-bottom: 30px;
+}
+#form-card{
+    width: 440px;
+    left: 33%;
+}
+select{
+    position: relative;
+    top:15px;
+}

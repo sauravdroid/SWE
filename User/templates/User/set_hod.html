@@ -1,0 +1,16 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block body %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="options">H.O.D</label>
+        <select name="hod" id="options">
+            {% for hod in hods %}
+                <option value="{{ hod.username }}">{{ hod.username }}</option>
+            {% endfor %}
+        </select>
+        <table>{{ form.as_table }}</table>
+        <button type="submit">Set Hod</button>
+    </form>
+
+{% endblock %}

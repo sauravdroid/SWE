@@ -1,0 +1,60 @@
+#card {
+
+    position: relative;
+    margin: 5px;
+    margin-top: 30px;
+    margin-right: 30px;
+    width: 350px;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#bar {
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    background-color: #3F51B5;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+#bar h5 {
+    position: relative;
+    margin-left: 20px;
+    font-size: 12px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+#container {
+    padding: 20px;
+}
+
+#container h4 {
+    position: relative;
+    top: 15px;
+    left: 0;
+    color:#E91E63;
+    font-size: 18px;
+    font-family: robotoRegular;
+}
+#container h5{
+    font-family: robotoRegular;
+    font-size: 14px;
+}
+.model{
+    position: relative;
+    left: 43px;
+}
+.qpaper-input{
+    position: relative;
+    float: right;
+    margin-bottom: 10px;
+}
+#btn_confirm{
+    position: relative;
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}

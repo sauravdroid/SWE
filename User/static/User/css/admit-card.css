@@ -1,0 +1,9 @@
+#card{
+    width: 500px;
+    position: relative;
+    top:30px;
+    left: 30%;
+}
+#bar h5{
+    font-size: 18px;
+}

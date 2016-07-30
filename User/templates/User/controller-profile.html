@@ -1,0 +1,112 @@
+{% extends 'User/base-head.html' %}
+{% load staticfiles %}
+{% block materializecss %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'User/css/table-style.css' %}">
+{% endblock %}
+{% block body %}
+    <div class="main-header">
+        <div class="sub-header">
+            <ul class="nav-ul">
+                <li><a href="{% url 'user:detail_list' 'Teacher' %}">Teachers</a></li>
+                <li><a href="{% url 'user:detail_list' 'Moderator' %}">Moderators</a></li>
+                <li><a href="{% url 'user:detail_list' 'PaperSetter' %}">Paper Setters</a></li>
+                <li><a href="{% url 'user:detail_list' 'TimeTable' %}">Timetable</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="navigation-drawer">
+        <ul class="menu-ul">
+            <li>
+                <div class="row-holder">
+                    <i class="material-icons md-dark md-inactive">loupe</i>
+                    <a href="{% url 'user:logout' %}" class="header-link">Logout</a>
+                </div>
+            </li>
+            <li class="menu-item menu-item-hover">
+                <div class="row-holder" id="row_holder">
+                    <i class="material-icons md-dark md-inactive">assignment</i>
+                    <a href="#" class="header-link">Appointments</a>
+                </div>
+                <ul class="sub-menu menu-item-hover">
+                    <li><a href="{% url 'user:send_appointment_moderator' %}">Moderators</a></li>
+                    <li><a href="{% url 'user:send_appointment_setter' paper_setter %}">Paper Setters</a></li>
+                </ul>
+            </li>
+            <li class="menu-item menu-item-hover">
+                <div class="row-holder">
+                    <i class="material-icons md-dark md-inactive">equalizer</i>
+                    <a href="#" class="header-link">Actions</a>
+                </div>
+                <ul class="sub-menu menu-item-hover">
+                    <li><a href="{% url 'user:register_teacher' %}">Register Teacher</a></li>
+                    <li><a href="{% url 'user:create_department' %}">Create Department</a></li>
+                    <li><a href="{% url 'user:create_course' %}">Create Course</a></li>
+                    <li><a href="{% url 'user:create_subject' %}">Create Subject</a></li>
+                    <li><a href="{% url 'user:show_course_challan' %}">Create Challan</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <td>
+                    <a href="{% url 'user:detail_list' 'Department' %}">
+                        <div class="table-card" style="background-color:#F44336;">
+                            <h4>Departments</h4>
+                            <h5>{{ departments }}</h5>
+                        </div>
+                    </a>
+
+                </td>
+                <td>
+                    <a href="{% url 'user:detail_list' 'Course' %}">
+                        <div class="table-card" style="background-color:#AB47BC;">
+                            <h4>Course</h4>
+                            <h5>{{ courses }}</h5>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'user:detail_list' 'Subject' %}">
+                        <div class="table-card" style="background-color:#26C6DA;">
+                            <h4>Subjects</h4>
+                            <h5>{{ subjects }}</h5>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{% url 'user:detail_list' 'Challan' %}">
+                        <div class="table-card" style="background-color:#26A69A;">
+                            <h4>Challans</h4>
+                            <h5>{{ challans }}</h5>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'user:detail_list' 'Student' %}">
+                        <div class="table-card" style="background-color:#66BB6A;">
+                            <h4>Students</h4>
+                            <h5>{{ students }}</h5>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'user:detail_list' 'QuestionPaper' %}">
+                        <div class="table-card" style="background-color:#FF7043;">
+                            <h4>Question Papers</h4>
+                            <h5>{{ question_papers }}</h5>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="{% static 'User/javascript/profile-controller.js' %}"></script>
+{% endblock %}
