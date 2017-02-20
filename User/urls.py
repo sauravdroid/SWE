@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 app_name = 'user'
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.login_user, name='login'),
     url(r'^main_register/$', views.user_main_register, name='main_register'),
     url(r'^login/$', views.login_user, name='login'),
     url(r'^controller/$', views.controller_profile, name='controller_profile'),
